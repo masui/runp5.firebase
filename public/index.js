@@ -42,7 +42,17 @@ async function loadAllStyles2 (styles) {
 	await loadStyle(`https://Scrapbox.io/api/code/${project}/${style}`)
     }
 }
+
+
 $(function(){
+    //console.log(document.location.pathname)
+    //console.log('+++++++')
+    let m = document.location.pathname.match(/^\/(.*)\/(.*)\/(.*)$/)
+    if(m){
+	loadScript(`https://Scrapbox.io/api/code/${m[1]}/${m[2]}/${m[3]}`)
+	return
+    }
+    
     const args = {}
     document.location.search.substring(1).split('&').forEach((s) => {
 	let [name, value] = s.split('=')
